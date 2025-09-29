@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"strings"
 )
 
@@ -44,24 +43,19 @@ func main() {
 		abd
 	*/
 
-	fmt.Println(1)
-	fmt.Println(StringShortener(v))
+	fmt.Println("1.", StringShortener(v))
 	fmt.Println()
 
-	fmt.Println(2)
-	fmt.Println(StringShortener(w))
+	fmt.Println("2.", StringShortener(w))
 	fmt.Println()
 
-	fmt.Println(3)
-	fmt.Println(StringShortener(y))
+	fmt.Println("3.", StringShortener(x))
 	fmt.Println()
 
-	fmt.Println(4)
-	fmt.Println(StringShortener(x))
+	fmt.Println("4.", StringShortener(y))
 	fmt.Println()
 
-	fmt.Println(5)
-	fmt.Println(StringShortener(z))
+	fmt.Println("5.", StringShortener(z))
 }
 
 /*
@@ -84,22 +78,24 @@ func StringShortener(inputStr string) string {
 		return ""
 	}
 
-	for i := range inputStr {
-		if len(inputStr) <= 1 {
-			break
-		}
-		splitStr := strings.Split(inputStr, "")
-
-		if splitStr[i] == splitStr[i+1] {
+	for i := 0; i < len(inputStr)-1; i++ {
+		if inputStr[i] == inputStr[i+1] {
 			inputStr = strings.Replace(
 				inputStr,
-				strings.Join([]string{splitStr[i], splitStr[i+1]}, ""),
+				strings.Join([]string{
+					string(inputStr[i]),
+					string(inputStr[i+1]),
+				}, ""),
 				"",
 				1,
 			)
-			log.Println(inputStr, "========> len", len(inputStr))
 
 			i = 0
+		}
+	}
+	if len(inputStr) > 1 {
+		if inputStr[0] == inputStr[1] {
+			return "empty string"
 		}
 	}
 
